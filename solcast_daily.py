@@ -152,16 +152,9 @@ def LoadOrRefreshCache(now_local: datetime) -> dict:
             )
             # Delete cache if older than 3 days.
             if (now_local - mtime_local) > timedelta(days=3):
-                try:
-                    CACHE_FILE.unlink()
-                    print(
-                        "Info: deleted stale Solcast cache (>3 days old).",
-                        file=sys.stderr,
-                    )
-                except Exception:
-                    # If deletion failed, mark as stale so we won't use it.
-                    cache_is_stale = True
+                cache_is_stale = True
                 need_fetch = True
+                CACHE_FILE.unlink()
             else:
                 # Same-day cache means we can skip fetching.
                 if mtime_local.date() == now_local.date():
