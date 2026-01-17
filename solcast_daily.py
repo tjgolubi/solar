@@ -177,7 +177,7 @@ def LoadOrRefreshCache(now_local: datetime) -> dict:
                 except Exception:
                     ts = "unknown time"
                 print(
-                    f"Warning: fetch failed (HTTP {e.code}: {e.reason}); "
+                    f"Warning: fetch failed (HTTP {e.code}: {e.reason});\n"
                     f"using cached forecast from {ts}.",
                     file=sys.stderr,
                 )
@@ -195,7 +195,7 @@ def LoadOrRefreshCache(now_local: datetime) -> dict:
                 except Exception:
                     ts = "unknown time"
                 print(
-                    f"Warning: fetch failed ({type(e).__name__}: {e}); "
+                    f"Warning: fetch failed ({type(e).__name__}: {e});\n"
                     f"using cached forecast from {ts}.",
                     file=sys.stderr,
                 )
